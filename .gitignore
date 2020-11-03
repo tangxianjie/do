@@ -1,5 +1,6 @@
 /.idea
 *.log
+.env
 /public/docs
 runtime/admin
 runtime/log
