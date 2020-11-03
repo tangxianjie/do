@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="__STATIC__/plugs/lay-module/treetable-lay/treetable.css?v={:time()}" media="all">
+<style>
+    .layui-btn:not(.layui-btn-lg ):not(.layui-btn-sm):not(.layui-btn-xs) {
+        height: 34px;
+        line-height: 34px;
+        padding: 0 8px;
+    }
+</style>
+<div class="layuimini-container">
+    <div class="layuimini-main">
+        <fieldset id="searchFieldset_currentTableRenderId" class="table-search-fieldset">
+            <legend>条件搜索</legend>
+            <form class="layui-form layui-form-pane form-search">
+
+            <div class="layui-form-item layui-inline">
+                <label class="layui-form-label">会员</label>
+                <div class="layui-input-inline">
+                    <input id="c-member.username" name="username" data-search-op="%*%" value="{:input('username','')}" placeholder="请输入会员" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-inline">
+                <label class="layui-form-label">创建时间</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="c-day" name="day" data-search-op="range" data-date="" data-date-type="date"  value="{:input('day','')}" placeholder="请输入创建时间" class="layui-input" lay-key="1">
+
+                </div>
+            </div>
+                <div class="layui-form-item layui-inline" style="margin-left: 115px">
+                <button type="submit" class="layui-btn layui-btn-normal" data-type="tableSearch" data-table="currentTableRenderId" lay-submit="" lay-filter="currentTableRenderId_filter"> 搜 索</button>
+                <button type="reset" class="layui-btn layui-btn-primary" data-table-reset="currentTableRenderId"> 重 置 </button>
+            </div>
+            </form>
+        </fieldset>
+
+
+        <table id="currentTable" class="layui-table layui-hide"
+               data-auth-add="{:auth('mall.daily/add')}"
+               data-auth-edit="{:auth('mall.daily/edit')}"
+               data-auth-delete="{:auth('mall.daily/delete')}"
+               lay-filter="currentTable">
+        </table>
+    </div>
+    <div id="laypages"></div>
+</div>
+
+
+<script type="text/html" id="toolbar">
+    <button class="layui-btn layui-btn-sm layuimini-btn-primary" data-treetable-refresh><i class="fa fa-refresh"></i> </button>
+    <button class="layui-btn layui-btn-normal layui-btn-sm {if !auth('mall.daily/add')}layui-hide{/if}" data-open="mall.daily/add" data-title="添加" data-full="true"><i class="fa fa-plus"></i> 添加</button>
+
+    <button class="layui-btn layui-btn-sm layui-btn-success {if !auth('mall.daily/done')}layui-hide{/if}" data-url="mall.daily/done" data-treetable-done="currentTableRenderId"> 完成</button>
+
+    <button class="layui-btn layui-btn-sm layui-btn-danger {if !auth('mall.daily/delete')}layui-hide{/if}" data-url="mall.daily/delete" data-treetable-delete="currentTableRenderId"><i class="fa fa-trash-o"></i> 删除</button>
+</script>

@@ -1,0 +1,95 @@
+<style>
+    .layui-iconpicker-body.layui-iconpicker-body-page .hide {
+        display: none;
+    }
+</style>
+<link rel="stylesheet" href="__STATIC__/plugs/lay-module/autocomplete/autocomplete.css?v={:time()}" media="all">
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+
+        <div class="layui-form-item  layui-row layui-col-xs12">
+            <label class="layui-form-label required">上级项目</label>
+            <div class="layui-input-block">
+                <select name="pid">
+                    {foreach $pidMenuList as $vo}
+                    <option value="{$vo.id}" {if $row.pid==$vo.id}selected=""{/if}>{$vo.title|raw}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item  layui-row layui-col-xs12">
+            <label class="layui-form-label ">会员</label>
+            <div class="layui-input-block">
+                <select name="member_id" >
+                    {foreach $member as $k=> $vo}
+                    <option value="{$k}"  {if $row.member_id==$k}selected=""{/if}  >{$vo}</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item  layui-row layui-col-xs12">
+            <label class="layui-form-label ">项目分类</label>
+            <div class="layui-input-block">
+                <select name="cate_id" >
+                    {foreach $cateList as $vo}
+                    <option value="{$vo.id}"  {if $row.cate_id==$vo.id}selected=""{/if}  >{$vo.title|raw}   剩余 {$vo.left} 积分</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item  layui-row layui-col-xs12">
+            <label class="layui-form-label ">违背原则</label>
+            <div class="layui-input-block">
+                <select name="abc_id" >
+                    {foreach $abcList as $vo}
+                    <option value="{$vo.id}"   {if $row.abc_id==$vo.id}selected=""{/if} >{$vo.title|raw}  扣除 {$vo.dec} 积分</option>
+                    {/foreach}
+                </select>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">项目名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" class="layui-input" lay-verify="required" lay-reqtext="请输入项目名称" placeholder="请输入项目名称" value="{$row.title|default=''}">
+                <tip>填写项目名称。</tip>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label required">积分</label>
+            <div class="layui-input-block">
+                <input type="number" name="score" class="layui-input" lay-verify="required" lay-reqtext="请输入项目名称" placeholder="请输入积分" value="{$row.score|raw}">
+                <tip>填写积分。</tip>
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">项目排序</label>
+            <div class="layui-input-block">
+                <input type="number" name="sort" lay-reqtext="项目排序不能为空" placeholder="请输入项目排序" value="{$row.sort|default=''}" class="layui-input">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">备注信息</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="请输入备注信息">{$row.remark|default=''}</textarea>
+            </div>
+        </div>
+
+        <div class="hr-line"></div>
+        <div class="layui-form-item text-center">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit>确认</button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+        </div>
+
+    </form>
+</div>
